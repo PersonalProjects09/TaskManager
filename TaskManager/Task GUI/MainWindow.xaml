@@ -1,0 +1,62 @@
+﻿<Window x:Class="Task_GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task_GUI"
+        mc:Ignorable="d"
+        Title="Task Manager" Height="450" Width="800"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock FontWeight="Bold" Margin="0,0,0,10" TextAlignment="Center" 
+                       FontSize="20" Grid.Row="0" Text="Task List"/>
+            <ListBox Name="TaskListBox" Grid.Row="1" SelectionChanged="TaskList_SelectionChanged"/>
+        </Grid>
+        <DockPanel Margin="10" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <StackPanel DockPanel.Dock="Right" Margin="0,0">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Margin" Value="0,0,0,5" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock FontWeight="Bold" Margin="0,0,0,10" 
+                           TextAlignment="Center" FontSize="20" Text="Options"/>
+                    <Button Name="btnRun" Click="btnRun_Click" FontSize="16" >Run Selected Task</Button>
+                    <Button Name="btnEdit" Click="btnEdit_Click" FontSize="16" >Edit Selected Task</Button>
+                </StackPanel>
+                <ListBox Name="PasswordListBox" Margin="0,0,0,5" Grid.Row="1"/>
+
+                <StackPanel Grid.Row="2">
+                    <Button Name="btnPasswordCopy" FontSize="16" Margin="0,0,0,5" Click="btnPasswordCopy_Click">Copy</Button>
+                    <Button Name="btnClose" FontSize="16" Click="btnClose_Click">Close</Button>
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>
