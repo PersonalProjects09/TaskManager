@@ -9,13 +9,15 @@ namespace Task_GUI
 {
     public class TaskDetailEXT : TaskDetail
     {
-        public Task0? EditTask;
-        public Task0? CompleteTask;
+        public Task0? EditTask { get; set; }
+        public Task0? CompleteTask { get; set; }
+        public bool RequiresAdmin { get; set; }
 
-        public TaskDetailEXT(TaskLib.Task task, string name, string description, Task0? edit = null, Task0? complete = null) 
+        public TaskDetailEXT(TaskLib.Task task, string name, string description, bool requiresAdmin = false, Task0? edit = null, Task0? complete = null) 
             : base(task, name, description, false)
         {
             CompleteTask = complete;
+            RequiresAdmin = requiresAdmin;
         }
     }
 }

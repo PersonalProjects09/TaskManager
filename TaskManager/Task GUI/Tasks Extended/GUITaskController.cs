@@ -19,7 +19,7 @@ namespace Task_GUI
                 "Restart Explorer", "Restart Windows Explorer Application"));
             TaskList.Add(new TaskDetailEXT(new Task1(new Method1(RunBatElevated),
                 new TaskOptions("Restart_Adapter", false)),
-                "Restart Adapter", "Restart Wireless Adapter"));
+                "Restart Adapter", "Restart Wireless Adapter", true));
             TaskList.Add(new TaskDetailEXT(new Task0(new Method0(OpenWebPages)),
                 "Open Links", "Open saved links from file"));
             TaskList.Add(new TaskDetailEXT(new Task1(new Method1(RunBat),
@@ -27,10 +27,10 @@ namespace Task_GUI
                 "Show Passwords", "Show all wifi passwords"));
             TaskList.Add(new TaskDetailEXT(new Task1(new Method1(RunBatElevated),
                 new TaskOptions("Disable_Help", false)),
-                "Disable Help", "Disable Windows Help Key"));
+                "Disable Help", "Disable Windows Help Key", true));
             TaskList.Add(new TaskDetailEXT(new Task1(new Method1(RunBatElevated),
                 new TaskOptions("Enable_Help", false)),
-                "Enable Help", "Enable Windows Help Key"));
+                "Enable Help", "Enable Windows Help Key", true));
             TaskList.Add(new TaskDetailEXT(new Task0(new Method0(ClassicContextMenu)),
                 "Classic Context", "Revert Windows 11 context (right click) menu changes"));
             TaskList.Add(new TaskDetailEXT(new Task0(new Method0(Windows11ContextMenu)),

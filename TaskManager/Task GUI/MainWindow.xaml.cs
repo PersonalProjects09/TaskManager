@@ -158,6 +158,14 @@ namespace Task_GUI
             {
                 btnEdit.Visibility = Visibility.Collapsed;
             }
+            if (SelectedTask.RequiresAdmin)
+            {
+                btnRun.Content = "Run Selected Task (A)";
+            }
+            else
+            {
+                btnRun.Content = "Run Selected Task";
+            }
         }
     }
 }
