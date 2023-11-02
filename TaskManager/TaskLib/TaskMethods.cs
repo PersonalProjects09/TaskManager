@@ -115,7 +115,7 @@ namespace TaskLib
             }
         }
 
-        public void RunCommand(TaskOptions options)
+        public static void RunCommand(TaskOptions options)
         {
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
@@ -123,22 +123,19 @@ namespace TaskLib
             startInfo.Arguments = "/C " + options.Name;
             startInfo.UseShellExecute = true;
 
-            if (options.Directory != "" && options.Directory != null)
-            {
+            if (!String.IsNullOrEmpty(options.Directory))
                 startInfo.WorkingDirectory = options.Directory;
-            }
             else
-            {
                 startInfo.WorkingDirectory = CD;
-            }
 
             if (options.Hidden)
-            {
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            }
 
             process.StartInfo = startInfo;
             process.Start();
+            
+            if (options.WaitForComplete)
+                process.WaitForExit();
         }
 
         public void RestartExplorer()

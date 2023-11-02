@@ -47,6 +47,7 @@
     <Compile Include="TaskMethods.cs" />
     <Compile Include="TaskOptions.cs" />
     <Compile Include="TaskDelegates.cs" />
+    <Compile Include="VersionChecker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Disable_Help.bat">
@@ -67,6 +68,9 @@
     <Content Include="Resources\Links.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

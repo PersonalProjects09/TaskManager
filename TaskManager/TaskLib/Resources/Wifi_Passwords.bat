@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
->passwords.txt (
+>Data/passwords.txt (
 
 for /F "tokens=2 delims=:" %%a in ('netsh wlan show profile') do (
 	set wifi_pwd=

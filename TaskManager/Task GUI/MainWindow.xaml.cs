@@ -31,6 +31,7 @@ namespace Task_GUI
         public MainWindow()
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            Loaded += new RoutedEventHandler(CheckVersion);
 
             InitializeComponent();
 
@@ -105,7 +106,7 @@ namespace Task_GUI
         {
             //https://youtu.be/prVHU1fLR20?t=126
 
-            var contents = File.ReadAllLines(TaskMethods.CD + "/passwords.txt");
+            var contents = File.ReadAllLines(TaskMethods.CD + "/Data/passwords.txt");
 
             List<string> partsList = new List<string>();
             foreach (string line in contents)
@@ -130,6 +131,18 @@ namespace Task_GUI
         }
 
         #endregion
+
+        private void CheckVersion(object sender, RoutedEventArgs e)
+        {
+            if (!VersionChecker.IsLatestVersion())
+            {
+                MessageBoxResult result = MessageBox.Show("Go to update page?",
+                    "Update needed!", MessageBoxButton.OKCancel);
+
+                if (result == MessageBoxResult.OK)
+                    TaskMethods.StartProcess("https://github.com/PersonalProjects09/TaskManager");
+            }
+        }
 
         private void CopyPassword()
         {
