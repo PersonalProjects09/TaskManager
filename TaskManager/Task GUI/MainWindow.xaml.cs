@@ -26,7 +26,7 @@ namespace Task_GUI
     {
         private GUITaskController controller;
 
-        private TaskDetailEXT SelectedTask => controller.TaskList[TaskListBox.SelectedIndex];
+        private TaskDetailGUI SelectedTask => controller.TaskList[TaskListBox.SelectedIndex];
 
         public MainWindow()
         {
@@ -35,16 +35,12 @@ namespace Task_GUI
             InitializeComponent();
 
             controller = new GUITaskController();
+            //Generate task list with event handlers from this window
+            controller.GenerateTaskList(this);
 
             TaskListBox.ItemsSource = controller.TaskList;
             TaskListBox.KeyDown += new KeyEventHandler(TaskListBox_KeyDown);
             PasswordListBox.KeyDown += new KeyEventHandler(PasswordListBox_KeyDown);
-
-            //Set method to call when links task is edited
-            controller.TaskList[2].EditTask = new Task0(OpenLinks);
-
-            //Set method to call when wifi password task completes
-            controller.TaskList[3].CompleteTask = new Task0(LoadWIFIPasswords);
 
             TaskListBox.SelectedIndex = 0;
         }
@@ -97,7 +93,7 @@ namespace Task_GUI
         #endregion
 
         #region TaskEditHandlers
-        private void OpenLinks()
+        public void EditLinks()
         {
             TaskMethods.StartProcess("Resources\\Links.txt");
         }

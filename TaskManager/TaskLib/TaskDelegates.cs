@@ -20,28 +20,28 @@ namespace TaskLib
     //Define variant classes
     public class Task0 : Task
     {
-        protected Method0 method;
+        protected Method0 Method { get; set; }
         public Task0(Method0 method)
         {
-            this.method = method;
+            Method = method;
         }
         public override void Run()
         {
-            method();
+            Method();
         }
     }
 
     public class Task1 : Task
     {
-        protected Method1 method;
+        protected Method1 Method { get; set; }
         public Task1(Method1 method, TaskOptions options)
         {
-            this.method = method;
+            Method = method;
             Options = options;
         }
         public override void Run()
         {
-            method(Options);
+            Method(Options);
         }
     }
 
