@@ -13,10 +13,6 @@ namespace TaskLib
 {
     public static class VersionChecker
     {
-        //using (WebClient client = new WebClient())
-        //{
-        //    html = client.DownloadString(url);
-        //}
         public static bool IsLatestVersion()
         {
             TaskMethods.RunCommand(new TaskOptions(
