@@ -42,7 +42,7 @@ namespace TaskLib
         public static void Update()
         {
             //Create update bat file
-            string[] lines = new string[9];
+            string[] lines = new string[10];
             lines[0] = "@echo off";
             lines[1] = "timeout /t 4";
             lines[3] = "echo Updating local git data";
@@ -51,6 +51,7 @@ namespace TaskLib
             lines[6] = "git restore .";
             lines[7] = "echo Updating to newest version";
             lines[8] = "git pull";
+            lines[9] = "set /p E=Enter to close:";
             File.WriteAllLines($"{TaskMethods.CD}\\Resources\\Update.bat", lines);
 
             TaskMethods.StartProcess($"{TaskMethods.CD}\\Resources\\Update.bat");

@@ -134,7 +134,7 @@ namespace Task_GUI
 
         private void CheckVersion(object sender, RoutedEventArgs e)
         {
-            if (true)
+            if (!VersionChecker.IsLatestVersion())
             {
                 MessageBoxResult result = MessageBox.Show("Update now?",
                     "Update needed!", MessageBoxButton.OKCancel);

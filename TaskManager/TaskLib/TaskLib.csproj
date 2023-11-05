@@ -59,7 +59,6 @@
     <None Include="Resources\Restart_Adapter.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\Update.bat" />
     <None Include="Resources\Wifi_Passwords.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
