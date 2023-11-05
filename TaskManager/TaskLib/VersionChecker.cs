@@ -46,11 +46,11 @@ namespace TaskLib
             lines[0] = "@echo off";
             lines[1] = "timeout /t 4";
             lines[3] = "echo Updating local git data";
-            lines[4] = "cmd /k \"git remote update\"";
+            lines[4] = "git remote update";
             lines[5] = "echo Restoring current version";
-            lines[6] = "cmd /k \"git restore .\"";
+            lines[6] = "git restore .";
             lines[7] = "echo Updating to newest version";
-            lines[8] = "cmd /k \"git pull\"";
+            lines[8] = "git pull";
             File.WriteAllLines($"{TaskMethods.CD}\\Resources\\Update.bat", lines);
 
             TaskMethods.StartProcess($"{TaskMethods.CD}\\Resources\\Update.bat");
