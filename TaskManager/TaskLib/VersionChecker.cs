@@ -15,11 +15,16 @@ namespace TaskLib
     {
         public static bool IsLatestVersion()
         {
+            if (!Directory.Exists($"{TaskMethods.CD}\\Data"))
+            {
+                Directory.CreateDirectory($"{TaskMethods.CD}\\Data");
+            }
+
             TaskMethods.RunCommand(new TaskOptions(
-                $"git rev-parse head > \"{TaskMethods.CD}\\Data\\currentVersion.txt\"", 
+                $"git rev-parse head > \"{TaskMethods.CD}\\Data\\CurrentVersion.txt\"", 
                 true, true));
 
-            var current = File.ReadAllLines($"{TaskMethods.CD}\\Data\\currentVersion.txt")[0];
+            var current = File.ReadAllLines($"{TaskMethods.CD}\\Data\\CurrentVersion.txt")[0];
 
             //Refresh current git data
             TaskMethods.RunCommand(new TaskOptions(
@@ -27,11 +32,28 @@ namespace TaskLib
 
             TaskMethods.RunCommand(new TaskOptions(
                 "git rev-parse main@{upstream} > \"" + TaskMethods.CD +
-                "\\Data\\latestVersion.txt\"", true, true));
+                "\\Data\\LatestVersion.txt\"", true, true));
 
-            var latest = File.ReadAllLines($"{TaskMethods.CD}\\Data\\latestVersion.txt")[0];
+            var latest = File.ReadAllLines($"{TaskMethods.CD}\\Data\\LatestVersion.txt")[0];
 
             return latest == current;
+        }
+
+        public static void Update()
+        {
+            //Create update bat file
+            string[] lines = new string[9];
+            lines[0] = "@echo off";
+            lines[1] = "timeout /t 4";
+            lines[3] = "echo Updating local git data";
+            lines[4] = "cmd /k \"git remote update\"";
+            lines[5] = "echo Restoring current version";
+            lines[6] = "cmd /k \"git restore .\"";
+            lines[7] = "echo Updating to newest version";
+            lines[8] = "cmd /k \"git pull\"";
+            File.WriteAllLines($"{TaskMethods.CD}\\Resources\\Update.bat", lines);
+
+            TaskMethods.StartProcess($"{TaskMethods.CD}\\Resources\\Update.bat");
         }
     }
 }

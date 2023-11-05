@@ -134,13 +134,16 @@ namespace Task_GUI
 
         private void CheckVersion(object sender, RoutedEventArgs e)
         {
-            if (!VersionChecker.IsLatestVersion())
+            if (true)
             {
-                MessageBoxResult result = MessageBox.Show("Go to update page?",
+                MessageBoxResult result = MessageBox.Show("Update now?",
                     "Update needed!", MessageBoxButton.OKCancel);
 
                 if (result == MessageBoxResult.OK)
-                    TaskMethods.StartProcess("https://github.com/PersonalProjects09/TaskManager");
+                {
+                    VersionChecker.Update();
+                    Close();
+                }    
             }
         }
 
