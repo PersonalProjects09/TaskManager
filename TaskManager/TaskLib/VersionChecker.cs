@@ -44,13 +44,13 @@ namespace TaskLib
             //Create update bat file
             string[] lines = new string[10];
             lines[0] = "@echo off";
-            lines[1] = "timeout /t 4";
+            lines[1] = "timeout /t 3";
             lines[3] = "echo Updating local git data";
-            lines[4] = "git remote update";
+            lines[4] = "call git remote update";
             lines[5] = "echo Restoring current version";
-            lines[6] = "git restore .";
+            lines[6] = "call git restore .";
             lines[7] = "echo Updating to newest version";
-            lines[8] = "git pull";
+            lines[8] = "call git pull";
             lines[9] = "set /p E=Enter to close:";
             File.WriteAllLines($"{TaskMethods.CD}\\Resources\\Update.bat", lines);
 
