@@ -42,19 +42,21 @@ namespace TaskLib
         public static void Update()
         {
             //Create update bat file
-            string[] lines = new string[10];
-            lines[0] = "@echo off";
-            lines[1] = "timeout /t 3";
-            lines[3] = "echo Updating local git data";
-            lines[4] = "call git remote update";
-            lines[5] = "echo Restoring current version";
-            lines[6] = "call git restore .";
-            lines[7] = "echo Updating to newest version";
-            lines[8] = "call git pull";
-            lines[9] = "set /p E=Enter to close:";
-            File.WriteAllLines($"{TaskMethods.CD}\\Resources\\Update.bat", lines);
+            List<string> lines = new List<string>();
+            lines.Add("@echo off");
+            lines.Add("timeout /t 3");
+            lines.Add("echo Updating local git data");
+            lines.Add("git remote update");
+            lines.Add("echo Reverting changes to current version");
+            lines.Add("git restore .");
+            lines.Add("echo Updating to newest version");
+            lines.Add("git pull");
+            lines.Add("set /p E=Enter to close:");
 
-            TaskMethods.StartProcess($"{TaskMethods.CD}\\Resources\\Update.bat");
+            string parent = new DirectoryInfo(TaskMethods.CD).Parent.ToString();
+            File.WriteAllLines($"{parent}\\Update.bat", lines);
+
+            TaskMethods.StartProcess($"{parent}\\Update.bat");
         }
     }
 }
