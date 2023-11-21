@@ -26,9 +26,18 @@ namespace Task_GUI
                 new TaskOptions("Restart_Adapter", false)),
                 "Restart Adapter", "Restart Wireless Adapter", true));
 
+            TaskList.Add(new TaskDetailGUI(new Task1(new Method1(RunCommand),
+                new TaskOptions("sfc /scannow", false, false, true)),
+                "Check System Files", "Check For Corrupted System Files", true, 
+                new EditOptions(new Task0(window.OpenLog), "Open Log File")));
+
+            TaskList.Add(new TaskDetailGUI(new Task1(new Method1(RunCommand),
+                new TaskOptions("chkdsk /f", false, false, true)),
+                "Check Disk", "Check For Disk Errors (Requires Reboot)", true));
+
             TaskList.Add(new TaskDetailGUI(new Task0(new Method0(OpenWebPages)),
                 "Open Links", "Open saved links from file", false,
-                new Task0(window.EditLinks)));
+                new EditOptions(new Task0(window.EditLinks), "Edit Links")));
 
             TaskList.Add(new TaskDetailGUI(new Task1(new Method1(RunBat),
                 new TaskOptions("Wifi_Passwords", true)),
@@ -48,6 +57,9 @@ namespace Task_GUI
 
             TaskList.Add(new TaskDetailGUI(new Task0(new Method0(Windows11ContextMenu)),
                 "Windows 11 Context", "Return to normal Windows 11 context (right click) menu"));
+
+            
+
         }
 
         override public void RunTask(int taskNum)

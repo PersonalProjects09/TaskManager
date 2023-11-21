@@ -131,6 +131,9 @@ namespace TaskLib
             if (options.Hidden)
                 startInfo.WindowStyle = ProcessWindowStyle.Hidden;
 
+            if (options.RequireAdmin)
+                startInfo.Verb = "runas";
+
             process.StartInfo = startInfo;
             process.Start();
             

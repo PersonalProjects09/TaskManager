@@ -75,9 +75,9 @@ namespace Task_GUI
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedTask.EditTask != null)
+            if (SelectedTask.EditOptions != null)
             {
-                SelectedTask.EditTask.Run();
+                SelectedTask.EditOptions.EditTask.Run();
             }
         }
 
@@ -97,6 +97,11 @@ namespace Task_GUI
         public void EditLinks()
         {
             TaskMethods.StartProcess("Resources\\Links.txt");
+        }
+
+        public void OpenLog()
+        {
+            TaskMethods.StartProcess("C:\\Windows\\Logs\\CBS\\CBS.log");
         }
 
         #endregion
@@ -162,9 +167,10 @@ namespace Task_GUI
             btnPasswordCopy.Visibility = Visibility.Collapsed;
             PasswordListBox.ItemsSource = null;
 
-            if (SelectedTask.EditTask != null)
+            if (SelectedTask.EditOptions != null)
             {
                 btnEdit.Visibility = Visibility.Visible;
+                btnEdit.Content = SelectedTask.EditOptions.EditText;
             }
             else
             {
