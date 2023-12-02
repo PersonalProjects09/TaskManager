@@ -135,10 +135,18 @@ namespace TaskLib
                 startInfo.Verb = "runas";
 
             process.StartInfo = startInfo;
-            process.Start();
-            
-            if (options.WaitForComplete)
-                process.WaitForExit();
+
+            try
+            {
+                process.Start();
+
+                if (options.WaitForComplete)
+                    process.WaitForExit();
+            }
+            catch (System.ComponentModel.Win32Exception ex)
+            {
+
+            }
         }
 
         public void RestartExplorer()

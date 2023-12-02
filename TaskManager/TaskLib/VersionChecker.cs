@@ -22,17 +22,17 @@ namespace TaskLib
 
             TaskMethods.RunCommand(new TaskOptions(
                 $"git rev-parse head > \"{TaskMethods.CD}\\Data\\CurrentVersion.txt\"", 
-                true, true));
+                true, waitForComplete: true));
 
             var current = File.ReadAllLines($"{TaskMethods.CD}\\Data\\CurrentVersion.txt")[0];
 
             //Refresh current git data
             TaskMethods.RunCommand(new TaskOptions(
-                "git remote update", true, true));
+                "git remote update", true, waitForComplete: true));
 
             TaskMethods.RunCommand(new TaskOptions(
                 "git rev-parse main@{upstream} > \"" + TaskMethods.CD +
-                "\\Data\\LatestVersion.txt\"", true, true));
+                "\\Data\\LatestVersion.txt\"", true, waitForComplete: true));
 
             var latest = File.ReadAllLines($"{TaskMethods.CD}\\Data\\LatestVersion.txt")[0];
 

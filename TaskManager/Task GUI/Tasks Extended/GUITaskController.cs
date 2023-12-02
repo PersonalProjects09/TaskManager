@@ -27,12 +27,12 @@ namespace Task_GUI
                 "Restart Adapter", "Restart Wireless Adapter", true));
 
             TaskList.Add(new TaskDetailGUI(new Task1(new Method1(RunCommand),
-                new TaskOptions("sfc /scannow", false, false, true)),
+                new TaskOptions("sfc /scannow", false, true)),
                 "Check System Files", "Check For Corrupted System Files", true, 
                 new EditOptions(new Task0(window.OpenLog), "Open Log File")));
 
             TaskList.Add(new TaskDetailGUI(new Task1(new Method1(RunCommand),
-                new TaskOptions("chkdsk /f", false, false, true)),
+                new TaskOptions("chkdsk /f", false, true)),
                 "Check Disk", "Check For Disk Errors (Requires Reboot)", true));
 
             TaskList.Add(new TaskDetailGUI(new Task0(new Method0(OpenWebPages)),

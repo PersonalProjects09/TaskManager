@@ -15,7 +15,7 @@ namespace TaskLib
         public bool WaitForComplete { get; set; }
         public bool RequireAdmin { get; set; }
 
-        public TaskOptions(string name, bool hidden, bool waitForComplete = false, bool requireAdmin = false, string directory = "", string completeMsg = "")
+        public TaskOptions(string name, bool hidden, bool requireAdmin = false, bool waitForComplete = false, string directory = "", string completeMsg = "")
         {
             Name = name;
             Hidden = hidden;
