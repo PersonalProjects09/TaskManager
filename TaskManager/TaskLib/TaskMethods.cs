@@ -120,7 +120,12 @@ namespace TaskLib
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = "cmd.exe";
-            startInfo.Arguments = "/C " + options.Name;
+
+            if (options.CloseOnComplete)
+                startInfo.Arguments = "/C " + options.Name;
+            else
+                startInfo.Arguments = "/K " + options.Name;
+
             startInfo.UseShellExecute = true;
 
             if (!String.IsNullOrEmpty(options.Directory))

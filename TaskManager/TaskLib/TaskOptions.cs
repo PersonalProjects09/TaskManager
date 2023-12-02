@@ -14,8 +14,9 @@ namespace TaskLib
         public string CompleteMsg { get; set; }
         public bool WaitForComplete { get; set; }
         public bool RequireAdmin { get; set; }
+        public bool CloseOnComplete { get; set; }
 
-        public TaskOptions(string name, bool hidden, bool requireAdmin = false, bool waitForComplete = false, string directory = "", string completeMsg = "")
+        public TaskOptions(string name, bool hidden, bool requireAdmin = false, bool waitForComplete = false, string directory = "", string completeMsg = "", bool closeOnComplete = true)
         {
             Name = name;
             Hidden = hidden;
@@ -23,6 +24,7 @@ namespace TaskLib
             CompleteMsg = completeMsg;
             WaitForComplete = waitForComplete;
             RequireAdmin = requireAdmin;
+            CloseOnComplete = closeOnComplete;
         }
     }
 }

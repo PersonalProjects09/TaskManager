@@ -27,7 +27,7 @@ namespace Task_GUI
                 "Restart Adapter", "Restart Wireless Adapter", true));
 
             TaskList.Add(new TaskDetailGUI(new Task1(new Method1(RunCommand),
-                new TaskOptions("sfc /scannow", false, true)),
+                new TaskOptions("sfc /scannow", false, true, closeOnComplete:false)),
                 "Check System Files", "Check For Corrupted System Files", true, 
                 new EditOptions(new Task0(window.OpenLog), "Open Log File")));
 
