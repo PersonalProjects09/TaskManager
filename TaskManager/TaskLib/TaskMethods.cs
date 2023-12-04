@@ -111,7 +111,7 @@ namespace TaskLib
             else
             {
                 File.Create("Resources\\Links.txt");
-                //Edit to return a value so that edit is run instead
+                StartProcess("Resources\\Links.txt");
             }
         }
 
