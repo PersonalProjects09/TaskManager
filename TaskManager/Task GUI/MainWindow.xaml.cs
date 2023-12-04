@@ -27,11 +27,13 @@ namespace Task_GUI
         private GUITaskController controller;
 
         private TaskDetailGUI SelectedTask => controller.TaskList[TaskListBox.SelectedIndex];
+        private string PasswordList { get; set; }
 
         public MainWindow()
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Loaded += new RoutedEventHandler(CheckVersion);
+            Closed += MainWindow_Closed;
 
             InitializeComponent();
 
@@ -44,6 +46,12 @@ namespace Task_GUI
             PasswordListBox.KeyDown += new KeyEventHandler(PasswordListBox_KeyDown);
 
             TaskListBox.SelectedIndex = 0;
+            PasswordList = String.Empty;
+        }
+
+        private void MainWindow_Closed(object? sender, EventArgs e)
+        {
+            File.Delete(TaskMethods.CD + "/Data/Passwords.txt");
         }
 
         #region KeyDowns
@@ -111,9 +119,10 @@ namespace Task_GUI
         {
             //https://youtu.be/prVHU1fLR20?t=126
 
-            var contents = File.ReadAllLines(TaskMethods.CD + "/Data/passwords.txt");
+            var contents = File.ReadAllLines(TaskMethods.CD + "/Data/Passwords.txt");
 
             List<string> partsList = new List<string>();
+            StringBuilder sb = new StringBuilder();
             foreach (string line in contents)
             {
                 var parts = line.Split(":");
@@ -125,7 +134,9 @@ namespace Task_GUI
                     parts[1] = parts[1].Trim();
 
                     partsList.Add("Wifi Network: " + parts[0]);
+                    sb.Append(parts[0] + ": ");
                     partsList.Add("Password: " + parts[1]);
+                    sb.AppendLine(parts[1]);
                 }
             }
 
@@ -133,6 +144,7 @@ namespace Task_GUI
             PasswordListBox.Visibility = Visibility.Visible;
             btnPasswordCopy.Visibility = Visibility.Visible;
             PasswordListBox.ItemsSource = partsList;
+            PasswordList = sb.ToString();
         }
 
         #endregion
@@ -154,11 +166,8 @@ namespace Task_GUI
 
         private void CopyPassword()
         {
-            if (PasswordListBox.SelectedItem != null)
-            {
-                btnPasswordCopy.Background = Brushes.LightGreen;
-                Clipboard.SetText(PasswordListBox.SelectedItem.ToString());
-            }
+            btnPasswordCopy.Background = Brushes.LightGreen;
+            Clipboard.SetText(PasswordList);
         }
 
         private void TaskList_SelectionChanged(object sender, SelectionChangedEventArgs e)
