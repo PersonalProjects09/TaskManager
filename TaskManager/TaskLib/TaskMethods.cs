@@ -74,9 +74,10 @@ namespace TaskLib
 
         public void OpenWebPages()
         {
-            if (File.Exists("Resources\\Links.txt"))
+            string path = "Resources\\Links.txt";
+            if (File.Exists(path))
             {
-                StreamReader reader = new StreamReader("Resources\\Links.txt");
+                StreamReader reader = new StreamReader(path);
                 string dataRow = null;
                 string[] data;
                 List<string> pages = new List<string>();
@@ -110,8 +111,9 @@ namespace TaskLib
             }
             else
             {
-                File.Create("Resources\\Links.txt");
-                StartProcess("Resources\\Links.txt");
+                FileStream f = File.Create(path);
+                f.Close();
+                StartProcess(path);
             }
         }
 

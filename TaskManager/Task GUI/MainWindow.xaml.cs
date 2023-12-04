@@ -104,14 +104,16 @@ namespace Task_GUI
         #region TaskEditHandlers
         public void EditLinks()
         {
-            if (File.Exists("Resources\\Links.txt"))
+            string path = "Resources\\Links.txt";
+            if (File.Exists(path))
             {
-                TaskMethods.StartProcess("Resources\\Links.txt");
+                TaskMethods.StartProcess(path);
             }
             else
             {
-                File.Create("Resources\\Links.txt");
-                TaskMethods.StartProcess("Resources\\Links.txt");
+                FileStream f = File.Create(path);
+                f.Close();
+                TaskMethods.StartProcess(path);
             }
                 
         }
