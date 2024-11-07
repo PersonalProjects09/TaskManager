@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -162,18 +163,24 @@ namespace Task_GUI
 
         private void CheckVersion(object sender, RoutedEventArgs e)
         {
-            if (!VersionChecker.IsLatestVersion())
-            {
-                MessageBoxResult result = MessageBox.Show("Update now?",
-                    "Update needed!", MessageBoxButton.OKCancel);
-
-                if (result == MessageBoxResult.OK)
-                {
-                    VersionChecker.Update();
-                    Close();
-                }    
-            }
+            Thread thread = new Thread(CheckVersionThreaded);
+            thread.Start();
         }
+
+        private void CheckVersionThreaded()
+        {
+			if (!VersionChecker.IsLatestVersion())
+			{
+				MessageBoxResult result = MessageBox.Show("Update now?",
+					"Update needed!", MessageBoxButton.OKCancel);
+
+				if (result == MessageBoxResult.OK)
+				{
+					VersionChecker.Update();
+					Close();
+				}
+			}
+		}
 
         private void CopyPassword()
         {
