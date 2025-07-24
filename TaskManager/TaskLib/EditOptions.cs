@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace TaskLib
 {
-    public class EditOptions
-    {
-        public Task0 EditTask { get; set; }
-        public string EditText { get; set; }
+    //public class EditOptions
+    //{
+    //    public Task0 EditTask { get; set; }
+    //    public string EditText { get; set; }
 
-        public EditOptions(Task0 editTask, string editText)
-        {
-            EditTask = editTask;
-            EditText = editText;
-        }
-    }
+    //    public EditOptions(Task0 editTask, string editText)
+    //    {
+    //        EditTask = editTask;
+    //        EditText = editText;
+    //    }
+    //}
 }

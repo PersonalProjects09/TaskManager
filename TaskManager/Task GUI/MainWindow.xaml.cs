@@ -27,7 +27,7 @@ namespace Task_GUI
     {
         private GUITaskController controller;
 
-        private TaskDetailGUI SelectedTask => controller.TaskList[TaskListBox.SelectedIndex];
+        private TaskLib.Tasks.Task SelectedTask => controller.TaskList[TaskListBox.SelectedIndex];
         private string PasswordList { get; set; }
 
         public MainWindow()
@@ -82,15 +82,12 @@ namespace Task_GUI
             //SelectedTask.RunTask();
         }
 
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
-        {
-            if (SelectedTask.EditOptions != null)
-            {
-                SelectedTask.EditOptions.EditTask.Run();
-            }
-        }
+		private void btnCustom_Click(object sender, RoutedEventArgs e)
+		{
+            SelectedTask.CustomAction();
+		}
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
+		private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
@@ -152,7 +149,7 @@ namespace Task_GUI
                 }
             }
 
-            btnPasswordCopy.Background = btnEdit.Background;
+            btnPasswordCopy.Background = btnCustom.Background;
             PasswordListBox.Visibility = Visibility.Visible;
             btnPasswordCopy.Visibility = Visibility.Visible;
             PasswordListBox.ItemsSource = partsList;
@@ -194,14 +191,14 @@ namespace Task_GUI
             btnPasswordCopy.Visibility = Visibility.Collapsed;
             PasswordListBox.ItemsSource = null;
 
-            if (SelectedTask.EditOptions != null)
+            if (SelectedTask.HasCustomAction)
             {
-                btnEdit.Visibility = Visibility.Visible;
-                btnEdit.Content = SelectedTask.EditOptions.EditText;
+                btnCustom.Visibility = Visibility.Visible;
+				btnCustom.Content = SelectedTask.CustomActionText;
             }
             else
             {
-                btnEdit.Visibility = Visibility.Collapsed;
+				btnCustom.Visibility = Visibility.Collapsed;
             }
             if (SelectedTask.RequiresAdmin)
             {
@@ -212,5 +209,5 @@ namespace Task_GUI
                 btnRun.Content = "Run Selected Task";
             }
         }
-    }
+	}
 }

@@ -48,7 +48,7 @@
                     <TextBlock FontWeight="Bold" Margin="0,0,0,10" 
                            TextAlignment="Center" FontSize="20" Text="Options"/>
                     <Button Name="btnRun" Click="btnRun_Click" FontSize="16" >Run Selected Task</Button>
-                    <Button Name="btnEdit" Click="btnEdit_Click" FontSize="16" >Edit Selected Task</Button>
+                    <Button Name="btnCustom" Click="btnCustom_Click" FontSize="16" >Edit Selected Task</Button>
                 </StackPanel>
                 <ListBox Name="PasswordListBox" Margin="0,0,0,5" Grid.Row="1"/>
 

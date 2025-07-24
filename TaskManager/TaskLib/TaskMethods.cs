@@ -164,32 +164,7 @@ namespace TaskLib
 
         public void RestartExplorer()
         {
-            //https://stackoverflow.com/questions/565405/how-to-programmatically-restart-windows-explorer-process
-
-            Process close = new Process();
-            close.StartInfo = new ProcessStartInfo
-            {
-                FileName = "cmd.exe",
-                Arguments = "/c taskkill -f -im explorer.exe",
-                WindowStyle = ProcessWindowStyle.Hidden,
-                UseShellExecute = true
-            };
-            close.Start();
-            close.WaitForExit();
-
-            string explorer = string.Format("{0}\\{1}", Environment.GetEnvironmentVariable("WINDIR"), "explorer.exe");
-            Process restart = new Process();
-            restart.StartInfo = new ProcessStartInfo
-            {
-                FileName = explorer,
-                UseShellExecute = true,
-            };
-            //restart.StartInfo.FileName = explorer;
-            //restart.StartInfo.UseShellExecute = true;
             
-            restart.Start();
-            //restart.WaitForExit();
-            System.Threading.Thread.Sleep(1000);
         }
 
         //https://www.winhelponline.com/blog/get-classic-full-context-menu-windows-11/?expand_article=1

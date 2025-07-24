@@ -48,6 +48,15 @@
     <Compile Include="TaskMethods.cs" />
     <Compile Include="TaskOptions.cs" />
     <Compile Include="TaskDelegates.cs" />
+    <Compile Include="Tasks\CheckDiskTask.cs" />
+    <Compile Include="Tasks\CheckSystemFilesTask.cs" />
+    <Compile Include="Tasks\DisableWindows11ContextTask.cs" />
+    <Compile Include="Tasks\EnableWindows11ContextTask.cs" />
+    <Compile Include="Tasks\OpenLinksTask.cs" />
+    <Compile Include="Tasks\Task.cs" />
+    <Compile Include="Tasks\WifiPasswordsTask.cs" />
+    <Compile Include="Tasks\WindowsExplorerTask.cs" />
+    <Compile Include="Tasks\WirelessAdapterTask.cs" />
     <Compile Include="VersionChecker.cs" />
   </ItemGroup>
   <ItemGroup>
