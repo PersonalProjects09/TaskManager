@@ -19,7 +19,13 @@ namespace TaskLib
             Process.Start(new ProcessStartInfo(process) { UseShellExecute = true });
         }
 
-        public void RunBat(TaskOptions options)
+		public static void StartProcess(TaskOptions options)
+		{
+			//https://github.com/dotnet/core/issues/4109
+			Process.Start(new ProcessStartInfo(options.Name) { UseShellExecute = true });
+		}
+
+		public void RunBat(TaskOptions options)
         {
             //bool ShellExecute = true;
             //string[] args = Environment.GetCommandLineArgs();

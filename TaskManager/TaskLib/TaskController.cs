@@ -32,7 +32,7 @@ namespace TaskLib
             TaskList.Add(new TaskDetail(new Task1(new Method1(RunBatElevated),
                 new TaskOptions("Enable_Help", false)),
                 "Enable Help", "Enable Windows Help Key"));
-        }
+		}
 
         public void Start()
         {

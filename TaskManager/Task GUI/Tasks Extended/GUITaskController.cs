@@ -58,9 +58,11 @@ namespace Task_GUI
             TaskList.Add(new TaskDetailGUI(new Task0(new Method0(Windows11ContextMenu)),
                 "Windows 11 Context", "Return to normal Windows 11 context (right click) menu"));
 
-            
+			TaskList.Add(new TaskDetailGUI(new Task1(new Method1(StartProcess),
+				new TaskOptions($"{CD}\\Resources\\PasteHistory.exe", false)),
+				"Windows Paste History", "Enable Windows Paste History (Win+V)"));
 
-        }
+		}
 
         override public void RunTask(int taskNum)
         {
